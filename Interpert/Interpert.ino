@@ -24,6 +24,14 @@ int op2;
 
 //wheel direction
 int direct=1;
+int deg;
+
+//where wheel is going to go
+int tarval;
+
+//
+int motor1Speed;
+int motor2Speed;
 
 // Read the number of a specified channel and convert to the range provided.
 // If the channel is off, return the default value
@@ -65,11 +73,15 @@ void loop() {
   op2=(enc_pos_deg-op2val);
   if(abs(op1)<=abs(op2)){
     direct=1;
+    tarval=enc_pos_deg;
+    val=op1;
   }
   else{
     direct=-1;
+    tarval=op2val;
+    val=op2
   }
 
-//where to turn 
-  
+//drive formula
+   
 }

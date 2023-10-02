@@ -74,12 +74,12 @@ void loop() {
   if(abs(op1)<=abs(op2)){
     direct=1;
     tarval=enc_pos_deg;
-    val=op1;
+    deg=op1;
   }
   else{
     direct=-1;
     tarval=op2val;
-    val=op2
+    deg=op2;
   }
 
 //drive formula

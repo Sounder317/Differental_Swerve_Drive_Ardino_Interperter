@@ -1,33 +1,47 @@
 //code
+#include <Servo.h> //ardrino servo library
+
 //Define the values for the stick on reciver 
-#define CH1 3
-#define CH2 5
+#define CH1 11
+#define CH2 10
+
+//defining motor values;
+Servo motor1;
+Servo motor2;
+
 //is for encoder
 int encoderp = A3;
+
 //ch1 is X direction 
 int ch1Value;
+
 //ch2 is y direction 
 int ch2Value;
 
 //enc_pos is actual position of wheel
-int enc_pos_1;
-int enc_pos_deg;
+float enc_pos_1;
+float enc_pos_deg;
 
 //wanted position of wheel
-int w_pos_rad;
-int w_pos_deg;
+float w_pos_rad;
+float w_pos_deg;
 
 //options
-int op1;
-int op2val;
-int op2;
+float op1;
+float op2val;
+float op2;
 
 //wheel direction
-int direct=1;
-int deg;
+bool direct=true;
+float deg;
 
 //where wheel is going to go
 int tarval;
+
+//motor curve
+void motorcurve(float where){
+return(sqrt(where));
+}
 
 //
 int motor1Speed;
@@ -46,8 +60,11 @@ void setup() {
   Serial.begin(115200);
   
   // Set all pins as inputs
+
   pinMode(CH1, INPUT);
   pinMode(CH2, INPUT);
+  motor1.attach(6);
+  motor2.attach(5);
   
 
 }
@@ -72,12 +89,12 @@ void loop() {
   op2val=abs(w_pos_deg-180);
   op2=(enc_pos_deg-op2val);
   if(abs(op1)<=abs(op2)){
-    direct=1;
+    direct=true;
     tarval=enc_pos_deg;
     deg=op1;
   }
   else{
-    direct=-1;
+    direct=false;
     tarval=op2val;
     deg=op2;
   }

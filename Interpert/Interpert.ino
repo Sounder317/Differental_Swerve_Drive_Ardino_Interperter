@@ -36,7 +36,8 @@ bool direct=true;
 float deg;
 
 //where wheel is going to go
-int tarval;
+float tarval;
+float turnspeed; 
 
 //motor curve
 void motorcurve(float where){
@@ -100,5 +101,6 @@ void loop() {
   }
 
 //drive formula
-   
+   float driveval=map(abs(deg),0,180,0,1);
+   turnspeed=motorcurve(driveval);
 }
